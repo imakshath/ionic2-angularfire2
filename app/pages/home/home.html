@@ -1,17 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding class="home">
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>app/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+    <button outline block (click) = "takePhoto()">Take a photo</button>
+    <ion-card *ngFor="let photo of photos | async">
+        <img [src]="photo.src" />
+        <button danger item-left clear (click)="deletePhoto(photo.$key)"><ion-icon name="trash"></ion-icon>Delete this photo</button>
+        <button danger item-left clear (click)="likePhoto(photo.$key, photo.likes)"><ion-icon name="heart"></ion-icon>{{photo.likes}}</button>
+    </ion-card>
 </ion-content>
