@@ -23,8 +23,8 @@ export class MyApp {
 }
 
 ionicBootstrap(MyApp, [FIREBASE_PROVIDERS, defaultFirebase({
-    apiKey: "AIzaSyDkw0tyQVSX9LC6rSDzpEJLYH4dQ0QlQGo",
-    authDomain: "sampleapp-2914b.firebaseapp.com",
-    databaseURL: "https://sampleapp-2914b.firebaseio.com",
-    storageBucket: "sampleapp-2914b.appspot.com",
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    storageBucket: "",
 })]);
