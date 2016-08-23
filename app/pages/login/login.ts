@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Alert, LoadingController, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { firebaseAuthConfig, FirebaseAuth } from 'angularfire2';
+import { FORM_DIRECTIVES, FormBuilder,  ControlGroup } from '@angular/common';
 
 @Component({
   templateUrl: 'build/pages/login/login.html'
@@ -28,11 +29,22 @@ export class LoginPage {
                 duration: 3000
             });
             toast.present();
-        })
+        });
     }
 
     public login(credentials){
-
+        this.showLoading();
+        this.auth.login(credentials).then((authData) => {
+            this.hideLoading();
+            this.navCtrl.setRoot(HomePage);
+        }).catch((err) =>{
+            this.hideLoading();
+            let toast = this.toastController.create({
+                message: ''+err,
+                duration: 3000
+            });
+            toast.present();
+        });
     }
     showLoading(){
         this.loading = this.loadingController.create({
@@ -41,6 +53,8 @@ export class LoginPage {
         this.loading.present();
     }
     hideLoading(){
-        this.loading.distroy();
+        setTimeout(() => {
+            this.loading.dismiss();
+        });
     }
 }
